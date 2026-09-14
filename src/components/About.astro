@@ -1,0 +1,82 @@
+---
+import { profile } from '../data/profile';
+---
+
+<section id="sobre-mi" class="section about">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Sobre mí</p>
+      <h2 class="section-title">Perfil <span class="glow-text">Profesional</span></h2>
+    </div>
+
+    <div class="about-grid">
+      <p class="about-text reveal">{profile.summary}</p>
+
+      <div class="about-card card reveal">
+        <h3 class="about-card-title">Foco actual</h3>
+        <ul class="about-list">
+          <li><span class="dot"></span>Seguridad de la información &amp; hacking ético</li>
+          <li><span class="dot"></span>Desarrollo frontend y backend moderno</li>
+          <li><span class="dot"></span>Contratos inteligentes y arquitectura Web3</li>
+          <li><span class="dot"></span>Trazabilidad e innovación digital</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: clamp(1.5rem, 4vw, 3rem);
+    align-items: start;
+  }
+
+  .about-text {
+    font-size: clamp(1rem, 1.6vw, 1.08rem);
+    line-height: 1.75;
+    color: var(--text-dim);
+  }
+
+  .about-card {
+    padding: 1.75rem;
+  }
+
+  .about-card-title {
+    font-size: 1rem;
+    color: var(--neon);
+    margin-bottom: 1.1rem;
+    font-family: var(--font-mono);
+    letter-spacing: 0.02em;
+  }
+
+  .about-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding-block: 0.55rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.92rem;
+    color: var(--text-dim);
+  }
+
+  .about-list li:last-child {
+    border-bottom: none;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: var(--neon);
+    box-shadow: var(--glow-sm);
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 860px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

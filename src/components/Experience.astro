@@ -1,0 +1,164 @@
+---
+import { experience } from '../data/profile';
+---
+
+<section id="experiencia" class="section">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Trayectoria</p>
+      <h2 class="section-title">Experiencia &amp; <span class="glow-text">Hackathones</span></h2>
+      <p class="section-sub">
+        Proyectos blockchain, Web3 y de software desarrollados en hackathones nacionales e internacionales.
+      </p>
+    </div>
+
+    <div class="timeline">
+      {
+        experience.map((exp, i) => (
+          <article class="exp-card card reveal" style={`transition-delay:${(i % 3) * 80}ms`}>
+            <div class="exp-node" aria-hidden="true"></div>
+            <div class="exp-header">
+              <h3 class="exp-project">{exp.project}</h3>
+              {exp.award && <span class="badge">{exp.award}</span>}
+            </div>
+            <p class="exp-meta">
+              {exp.role} · {exp.event}
+              {exp.period && ` · ${exp.period}`}
+            </p>
+
+            <ul class="exp-desc">
+              {exp.description.map((d) => (
+                <li>{d}</li>
+              ))}
+            </ul>
+
+            <div class="exp-footer">
+              <div class="exp-tags">
+                {exp.tags.map((t) => (
+                  <span class="tag">{t}</span>
+                ))}
+              </div>
+              {exp.repo && (
+                <a href={exp.repo} target="_blank" rel="noopener noreferrer" class="exp-repo">
+                  <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                    <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55v-2.14c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.68-1.29-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z" />
+                  </svg>
+                  Repositorio
+                </a>
+              )}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .exp-card {
+    position: relative;
+    padding: 1.75rem;
+    padding-left: 2.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .exp-node {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(var(--neon), var(--neon-2));
+    box-shadow: var(--glow-sm);
+    border-radius: 3px 0 0 3px;
+  }
+
+  .exp-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+  }
+
+  .exp-project {
+    font-size: 1.15rem;
+  }
+
+  .exp-meta {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--neon);
+    letter-spacing: 0.01em;
+  }
+
+  .exp-desc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .exp-desc li {
+    position: relative;
+    padding-left: 1rem;
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .exp-desc li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: var(--neon-2);
+  }
+
+  .exp-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.85rem;
+    margin-top: auto;
+    padding-top: 0.6rem;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .exp-repo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    transition: color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .exp-repo:hover {
+    color: var(--neon);
+  }
+
+  @media (max-width: 900px) {
+    .timeline {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

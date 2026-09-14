@@ -1,0 +1,83 @@
+---
+import { congresses } from '../data/profile';
+---
+
+<section id="congresos" class="section congresses">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Reconocimientos</p>
+      <h2 class="section-title">Congresos &amp; Participaciones</h2>
+    </div>
+
+    <ol class="cg-list">
+      {
+        congresses.map((item) => (
+          <li class="cg-item reveal">
+            <span class="cg-year">{item.year}</span>
+            <span class="cg-line" aria-hidden="true" />
+            <span class="cg-title">{item.title}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .cg-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cg-item {
+    display: grid;
+    grid-template-columns: 64px 24px 1fr;
+    align-items: center;
+    padding-block: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .cg-item:first-child {
+    padding-top: 0;
+  }
+
+  .cg-year {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--neon);
+  }
+
+  .cg-line {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--neon-2);
+    box-shadow: var(--glow-sm);
+    justify-self: center;
+  }
+
+  .cg-title {
+    font-size: 0.94rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 560px) {
+    .cg-item {
+      grid-template-columns: 20px 1fr;
+      grid-template-rows: auto auto;
+      row-gap: 0.3rem;
+    }
+    .cg-year {
+      grid-column: 2;
+      order: 1;
+    }
+    .cg-line {
+      grid-row: 1 / 3;
+    }
+    .cg-title {
+      grid-column: 2;
+      order: 2;
+    }
+  }
+</style>

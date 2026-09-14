@@ -1,0 +1,165 @@
+---
+import { profile, highlights } from '../data/profile';
+---
+
+<section id="inicio" class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow reveal">System · Online</p>
+
+    <h1 class="hero-title reveal">
+      Hola, soy <span class="glow-text">{profile.name}</span>
+    </h1>
+
+    <p class="hero-role reveal">{profile.role}</p>
+
+    <p class="hero-tagline reveal">{profile.tagline}</p>
+
+    <div class="hero-actions reveal">
+      <a href="#experiencia" class="btn btn-primary">Ver proyectos</a>
+      <a href="#contacto" class="btn btn-outline">Contactar</a>
+      <a href={profile.github} target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+          <path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55v-2.14c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.29-1.68-1.29-1.68-1.05-.72.08-.7.08-.7 1.16.08 1.78 1.2 1.78 1.2 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.81 1.18 1.84 1.18 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16v3.2c0 .3.21.66.79.55A10.52 10.52 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"
+          ></path>
+        </svg>
+        GitHub
+      </a>
+    </div>
+
+    <dl class="hero-stats reveal">
+      {
+        highlights.map((h) => (
+          <div class="stat">
+            <dt class="stat-value glow-text">{h.value}</dt>
+            <dd class="stat-label">{h.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+
+  <a href="#sobre-mi" class="scroll-cue" aria-label="Desplazarse hacia abajo">
+    <span></span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    overflow: hidden;
+  }
+
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.1rem;
+    padding-block: clamp(3rem, 8vw, 5rem);
+  }
+
+  .hero-title {
+    font-size: clamp(2.1rem, 6vw, 4rem);
+    line-height: 1.1;
+  }
+
+  .hero-role {
+    font-family: var(--font-mono);
+    font-size: clamp(0.95rem, 2vw, 1.15rem);
+    color: var(--neon);
+    letter-spacing: 0.02em;
+  }
+
+  .hero-tagline {
+    max-width: 62ch;
+    font-size: clamp(1rem, 1.6vw, 1.1rem);
+    color: var(--text-dim);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    margin-top: 0.75rem;
+  }
+
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    max-width: 640px;
+  }
+
+  .stat-value {
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+    font-weight: 800;
+  }
+
+  .stat-label {
+    margin: 0.3rem 0 0;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    line-height: 1.35;
+  }
+
+  .scroll-cue {
+    position: absolute;
+    bottom: 2.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 42px;
+    border: 1px solid var(--border-strong);
+    border-radius: 999px;
+    display: grid;
+    place-items: start center;
+    padding-top: 8px;
+  }
+
+  .scroll-cue span {
+    width: 4px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--neon);
+    box-shadow: var(--glow-sm);
+    animation: cue 1.8s ease-in-out infinite;
+  }
+
+  @keyframes cue {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    70% {
+      transform: translateY(14px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-cue span {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-stats {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: none;
+    }
+    .scroll-cue {
+      display: none;
+    }
+  }
+</style>
